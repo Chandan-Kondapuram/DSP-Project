@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Query Data</title>
+</head>
+<body>
+    <h1>Healthcare Data</h1>
+    <table border="1">
+        <tr>
+            <th>Field</th>
+            <th>Value</th>
+        </tr>
+        {% for row in data %}
+            <tr>
+                {% for key, value in row.items() %}
+                    <td>{{ key }}</td>
+                    <td>{{ value }}</td>
+                {% endfor %}
+            </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
