@@ -58,3 +58,199 @@ The system provides endpoints for:
   Install the required libraries using:
   ```bash
   pip install -r requirements.txt
+
+**Installation Steps**
+
+1.Clone the repository:
+
+git clone https://github.com/your-username/secure-database-project.git
+
+cd secure-database-project
+
+2.Initialize the database:
+
+•Run the database\_setup.py script to create the database and tables, and populate them with sample data:
+
+python database\_setup.py
+
+3.Run the Flask application:
+
+python app.py
+
+4.Test the application:
+
+•Use curl or Postman to send requests to the API endpoints.
+
+**API Endpoints**
+
+**User Registration**
+
+•**Endpoint**: /register
+
+•**Method**: POST
+
+•**Example Request**:
+
+curl -X POST http://127.0.0.1:5000/register \\
+
+\-H "Content-Type: application/json" \\
+
+\-d '{"username": "Ronaldo", "password": "CR7", "group": "H"}'
+
+•**Example Response**:
+
+{
+
+  "message": "User registered successfully!"
+
+}
+
+**User Login**
+
+•**Endpoint**: /login
+
+•**Method**: POST
+
+•**Example Request**:
+
+curl -X POST http://127.0.0.1:5000/login \\
+
+\-H "Content-Type: application/json" \\
+
+\-d '{"username": "Ronaldo", "password": "CR7"}'
+
+•**Example Response**:
+
+{
+
+  "message": "Login successful!",
+
+  "group": "H"
+
+}
+
+**Query Data**
+
+•**Endpoint**: /query
+
+•**Method**: GET
+
+•**Query Parameter**:
+
+•group=H or group=R.
+
+•**Example Request**:
+
+curl -X GET "http://127.0.0.1:5000/query?group=H"
+
+•**Example Response**:
+
+\[
+
+  {
+
+    "id": 1,
+
+    "gender": "encrypted\_value",
+
+    "age": "encrypted\_value",
+
+    "weight": 70.5,
+
+    "height": 180.0,
+
+    "health\_history": "No significant health issues"
+
+  }
+
+\]
+
+**Add Data (Group H Only)**
+
+•**Endpoint**: /add
+
+•**Method**: POST
+
+•**Headers**:
+
+•username: Ronaldo
+
+•password: CR7.
+
+•**Example Request**:
+
+curl -X POST http://127.0.0.1:5000/add \\
+
+\-H "Content-Type: application/json" \\
+
+\-H "username: Ronaldo" -H "password: CR7" \\
+
+\-d '{"first\_name": "John", "last\_name": "Doe", "gender": 1, "age": 30, "weight": 75.5, "height": 180, "health\_history": "No issues"}'
+
+•**Example Response**:
+
+{
+
+  "message": "Data added successfully!"
+
+}
+
+**Testing and Results**
+
+**Feature Testing:**
+
+1.**Registration**:
+
+•Registered users with valid and invalid data.
+
+•Verified hashed passwords in the database.
+
+2.**Login**:
+
+•Tested with correct and incorrect credentials.
+
+3.**Query Data**:
+
+•Group H: Retrieved full data.
+
+•Group R: Verified restricted access.
+
+4.**Add Data**:
+
+•Verified that only Group H users can add data.
+
+5.**Tamper Detection**:
+
+•Modified database records and confirmed detection of integrity failures.
+
+**Limitations and Suggestions**
+
+1.**Key Management**:
+
+•The encryption key (cipher.key) is stored locally. A more robust solution would use a key management system (e.g., AWS KMS or Azure Key Vault).
+
+2.**Performance**:
+
+•Encryption and hashing add overhead, which could slow performance for larger datasets.
+
+3.**Password Policy**:
+
+•Currently, no policy enforces strong passwords. Implementing password complexity requirements could enhance security.
+
+4.**Error Handling**:
+
+•Improve error messages for more descriptive feedback to users.
+
+**Team Contributions**
+
+Implemented /register and /login endpoints.
+
+Developed query integrity checks and encryption mechanisms.
+
+Conducted testing and prepared the documentation.
+
+**License**
+
+This project is licensed under the MIT License.
+
+\---
