@@ -15,34 +15,34 @@ The system provides endpoints for:
 ---
 
 ## Features
-1. **User Authentication**:
+1. User Authentication:
    - Secure registration and login with `bcrypt` for password hashing.
    - Passwords are stored in a hashed format, ensuring security.
 
-2. **Role-Based Access Control**:
+2. Role-Based Access Control:
    - **Group H**: Full access to all fields in the database and permission to add data.
    - **Group R**: Restricted access (no access to `first_name` and `last_name`) and no permission to add data.
 
-3. **Query Integrity**:
+3. Query Integrity:
    - Uses `row_hash` for individual record integrity and `overall_hash` for completeness verification.
 
-4. **Data Confidentiality**:
+4. Data Confidentiality:
    - Encrypts sensitive fields (`gender`, `age`) using `Fernet`.
 
-5. **Tamper Detection**:
+5. Tamper Detection:
    - Detects any modification of data or missing records in query results.
 
 ---
 
 ## Technologies Used
-- **Backend Framework**: Flask - Used for building the RESTful API and handling user requests.
-- **Database**: MySQL - Serves as the database for storing user credentials, encrypted fields, and healthcare data.
-- **Security Libraries**:
+- Backend Framework: Flask - Used for building the RESTful API and handling user requests.
+- Database: MySQL - Serves as the database for storing user credentials, encrypted fields, and healthcare data.
+- Security Libraries:
   - `bcrypt`: Ensures secure password hashing and storage.
   - `Fernet` (from the `cryptography` library): Provides encryption and decryption for sensitive fields (`gender` and `age`).
-- **Database Connector**: `mysql-connector-python` - Facilitates communication between the Flask application and the MySQL database.
-- **Language**: Python - Provides the flexibility and libraries required for secure application development.
-- **Development Tools**:
+- Database Connector: `mysql-connector-python` - Facilitates communication between the Flask application and the MySQL database.
+- Language: Python - Provides the flexibility and libraries required for secure application development.
+- Development Tools:
   - `curl`: For testing RESTful API endpoints.
   - Postman (optional): For interactive API testing.
 
@@ -51,15 +51,15 @@ The system provides endpoints for:
 ## Setup Instructions
 
 ### Prerequisites
-- **Software Requirements**:
+- Software Requirements:
   - Python 3.8 or above.
   - MySQL database server (installed and running).
-- **Python Libraries**:
+- Python Libraries:
   Install the required libraries using:
   ```bash
   pip install -r requirements.txt
 
-**Installation Steps**
+Installation Steps
 
 1.Clone the repository:
 
@@ -81,15 +81,15 @@ python app.py
 
 •Use curl or Postman to send requests to the API endpoints.
 
-**API Endpoints**
+API Endpoints
 
-**User Registration**
+User Registration
 
-•**Endpoint**: /register
+•Endpoint: /register
 
-•**Method**: POST
+•Method: POST
 
-•**Example Request**:
+•Example Request:
 
 curl -X POST http://127.0.0.1:5000/register \\
 
@@ -97,7 +97,7 @@ curl -X POST http://127.0.0.1:5000/register \\
 
 \-d '{"username": "Ronaldo", "password": "CR7", "group": "H"}'
 
-•**Example Response**:
+•Example Response:
 
 {
 
@@ -105,13 +105,13 @@ curl -X POST http://127.0.0.1:5000/register \\
 
 }
 
-**User Login**
+User Login**
 
-•**Endpoint**: /login
+•Endpoint: /login
 
-•**Method**: POST
+•Method**: POST
 
-•**Example Request**:
+•Example Request:
 
 curl -X POST http://127.0.0.1:5000/login \\
 
@@ -119,7 +119,7 @@ curl -X POST http://127.0.0.1:5000/login \\
 
 \-d '{"username": "Ronaldo", "password": "CR7"}'
 
-•**Example Response**:
+•Example Response:
 
 {
 
@@ -129,9 +129,9 @@ curl -X POST http://127.0.0.1:5000/login \\
 
 }
 
-**Query Data**
+Query Data
 
-•**Endpoint**: /query
+•Endpoint: /query
 
 •**Method**: GET
 
@@ -139,11 +139,11 @@ curl -X POST http://127.0.0.1:5000/login \\
 
 •group=H or group=R.
 
-•**Example Request**:
+•Example Request:
 
 curl -X GET "http://127.0.0.1:5000/query?group=H"
 
-•**Example Response**:
+•Example Response:
 
 \[
 
@@ -165,19 +165,19 @@ curl -X GET "http://127.0.0.1:5000/query?group=H"
 
 \]
 
-**Add Data (Group H Only)**
+Add Data (Group H Only)
 
-•**Endpoint**: /add
+•Endpoint: /add
 
-•**Method**: POST
+•Method: POST
 
-•**Headers**:
+•Headers:
 
 •username: Ronaldo
 
 •password: CR7.
 
-•**Example Request**:
+•Example Request:
 
 curl -X POST http://127.0.0.1:5000/add \\
 
@@ -187,7 +187,7 @@ curl -X POST http://127.0.0.1:5000/add \\
 
 \-d '{"first\_name": "John", "last\_name": "Doe", "gender": 1, "age": 30, "weight": 75.5, "height": 180, "health\_history": "No issues"}'
 
-•**Example Response**:
+•Example Response:
 
 {
 
@@ -195,62 +195,56 @@ curl -X POST http://127.0.0.1:5000/add \\
 
 }
 
-**Testing and Results**
+Testing and Results
 
-**Feature Testing:**
+Feature Testing:
 
-1.**Registration**:
+1.Registration:
 
 •Registered users with valid and invalid data.
 
 •Verified hashed passwords in the database.
 
-2.**Login**:
+2.Login:
 
 •Tested with correct and incorrect credentials.
 
-3.**Query Data**:
+3.Query Data:
 
 •Group H: Retrieved full data.
 
 •Group R: Verified restricted access.
 
-4.**Add Data**:
+4.Add Data:
 
 •Verified that only Group H users can add data.
 
-5.**Tamper Detection**:
+5.Tamper Detection:
 
 •Modified database records and confirmed detection of integrity failures.
 
-**Limitations and Suggestions**
+Limitations and Suggestions
 
-1.**Key Management**:
+1.Key Management:
 
 •The encryption key (cipher.key) is stored locally. A more robust solution would use a key management system (e.g., AWS KMS or Azure Key Vault).
 
-2.**Performance**:
+2.Performance:
 
 •Encryption and hashing add overhead, which could slow performance for larger datasets.
 
-3.**Password Policy**:
+3.Password Policy:
 
 •Currently, no policy enforces strong passwords. Implementing password complexity requirements could enhance security.
 
-4.**Error Handling**:
+4.Error Handling:
 
 •Improve error messages for more descriptive feedback to users.
 
-**Team Contributions**
+Team Contributions
 
 Implemented /register and /login endpoints.
 
 Developed query integrity checks and encryption mechanisms.
 
-Conducted testing and prepared the documentation.
-
-**License**
-
-This project is licensed under the MIT License.
-
-\---
+Conducted testing and prepared the documentation
