@@ -240,11 +240,3 @@ Limitations and Suggestions
 4.Error Handling:
 
 •Improve error messages for more descriptive feedback to users.
-
-Team Contributions
-
-Implemented /register and /login endpoints.
-
-Developed query integrity checks and encryption mechanisms.
-
-Conducted testing and prepared the documentation
