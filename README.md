@@ -62,21 +62,21 @@ The system provides endpoints for:
 Installation Steps
 
 1.Clone the repository:
-
+ ```bash
 git clone https://github.com/your-username/secure-database-project.git
-
+```
 cd secure-database-project
 
 2.Initialize the database:
-
+  ```bash
 •Run the database\_setup.py script to create the database and tables, and populate them with sample data:
-
+```
 python database\_setup.py
 
 3.Run the Flask application:
-
+  ```bash
 python app.py
-
+```
 4.Test the application:
 
 •Use curl or Postman to send requests to the API endpoints.
@@ -90,21 +90,21 @@ User Registration
 •Method: POST
 
 •Example Request:
-
+  ```bash
 curl -X POST http://127.0.0.1:5000/register \\
 
 \-H "Content-Type: application/json" \\
 
 \-d '{"username": "Ronaldo", "password": "CR7", "group": "H"}'
-
+```
 •Example Response:
-
+  ```bash
 {
 
   "message": "User registered successfully!"
 
 }
-
+```
 User Login**
 
 •Endpoint: /login
@@ -112,15 +112,15 @@ User Login**
 •Method**: POST
 
 •Example Request:
-
+  ```bash
 curl -X POST http://127.0.0.1:5000/login \\
 
 \-H "Content-Type: application/json" \\
 
 \-d '{"username": "Ronaldo", "password": "CR7"}'
-
+```
 •Example Response:
-
+  ```bash
 {
 
   "message": "Login successful!",
@@ -128,7 +128,7 @@ curl -X POST http://127.0.0.1:5000/login \\
   "group": "H"
 
 }
-
+```
 Query Data
 
 •Endpoint: /query
@@ -140,11 +140,11 @@ Query Data
 •group=H or group=R.
 
 •Example Request:
-
+  ```bash
 curl -X GET "http://127.0.0.1:5000/query?group=H"
-
+```
 •Example Response:
-
+  ```bash
 \[
 
   {
@@ -164,7 +164,7 @@ curl -X GET "http://127.0.0.1:5000/query?group=H"
   }
 
 \]
-
+```
 Add Data (Group H Only)
 
 •Endpoint: /add
@@ -178,7 +178,7 @@ Add Data (Group H Only)
 •password: CR7.
 
 •Example Request:
-
+  ```bash
 curl -X POST http://127.0.0.1:5000/add \\
 
 \-H "Content-Type: application/json" \\
@@ -186,15 +186,15 @@ curl -X POST http://127.0.0.1:5000/add \\
 \-H "username: Ronaldo" -H "password: CR7" \\
 
 \-d '{"first\_name": "John", "last\_name": "Doe", "gender": 1, "age": 30, "weight": 75.5, "height": 180, "health\_history": "No issues"}'
-
+```
 •Example Response:
-
+  ```bash
 {
 
   "message": "Data added successfully!"
 
 }
-
+```
 Testing and Results
 
 Feature Testing:
